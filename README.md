@@ -1,5 +1,5 @@
 # Proyecto de Portafolio Personal
-[![Image](https://github.com/user-attachments/assets/fd602577-8eb5-4ddc-823d-ebbf8fb7f53f)](https://miportfoliocv.netlify.app/)
+![Image](https://github.com/user-attachments/assets/d02ca374-3f65-45cc-93d2-43a4849dc8c9)
 
 Desarrollé un portafolio web dinámico e innovador, con el objetivo de presentar mi perfil profesional de manera creativa y funcional.
 Desarrolle el proyecto desde la concepción de la arquitectura y UX/UI hasta la implementación front-end completa.
