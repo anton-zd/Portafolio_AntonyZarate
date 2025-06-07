@@ -243,6 +243,29 @@
     padding: 6px 12px;
     font-size: 13px;
   }
+  
+  /* Education section mobile styles */
+  .education-section {
+    padding: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .education-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .education-item {
+    gap: 0.5rem;
+  }
+
+  .education-item h4 {
+    font-size: 0.95rem;
+  }
+
+  .education-item .current-semester {
+    font-size: 0.95rem;
+  }
 }
 
 @media screen and (max-width: 1439px) {
@@ -304,4 +327,26 @@
   .popup-description {
     max-height: 150px;
   }
+}
+
+/* Education section responsive styles */
+.education-section {
+  padding: 1.25rem;
+}
+
+.education-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1.25rem;
+}
+
+.education-item {
+  gap: 0.75rem;
+}
+
+.education-item h4 {
+  font-size: 1rem;
+}
+
+.education-item .current-semester {
+  font-size: 1rem;
 }
