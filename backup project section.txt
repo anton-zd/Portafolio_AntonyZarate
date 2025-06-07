@@ -1,0 +1,71 @@
+<section id="projects">
+      <p class="section__text__p1">Mis mas Recientes</p>
+      <h1 class="title">Proyectos</h1>
+      <div class="buttons">
+        <button type="button">
+          All
+        </button>
+        <button type="button" data-btn="1">
+          Excel
+        </button>
+        <button type="button" data-btn="2">
+          MySQL
+        </button>
+        <button type="button" data-btn="3">
+          Power BI
+        </button>
+        <button type="button" data-btn="4">
+          Python
+        </button>
+        <button type="button" data-btn="5">
+          C++
+        </button>
+        <button type="button" data-btn="6">
+          C#
+        </button>
+      </div>
+      <div class="images">
+        <img 
+        src="./assets/excel project 1.png" 
+        alt="img"
+        data-img="1"/>
+        <img 
+        src="./assets/excel project 2.png" 
+        alt="img"
+        data-img="1"/>
+        <img 
+        src="./assets/SQ projects.png" 
+        alt="img"
+        data-img="2"/>
+        <img 
+        src="./assets/SQ projects 2.png" 
+        alt="img"
+        data-img="2"/>
+        <img 
+        src="./assets/power bi project 1.png" 
+        alt="img"
+        data-img="3"/>
+        <img 
+        src="./assets/power bi project 2.png" 
+        alt="img"
+        data-img="3"/>
+        <img 
+        src="./assets/power bi project 3.png" 
+        alt="img"
+        data-img="3"/>
+        <img 
+        src="./assets/python projects 1.png" 
+        alt="img"
+        data-img="4"/>
+        <img 
+        src="./assets/python projects 2.png" 
+        alt="img"
+        data-img="4"/>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#contact'"
+      />
+    </section>
