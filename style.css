@@ -114,8 +114,9 @@ a:hover {
   background-color: white;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start; /* Align items to the start for left alignment */
+  justify-content: flex-start; /* Align items to the start for top alignment */
+  padding-top: 2rem; /* Add padding at the top for the close button */
   gap: 2rem;
   transition: right 0.3s ease-in-out;
   z-index: 999;
@@ -129,28 +130,56 @@ a:hover {
 .menu-links a {
   color: black;
   text-decoration: none;
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
+  font-size: 1.5rem; /* Adjust font size */
+  transition: none; /* Remove transition on hover */
   width: 100%;
-  text-align: center;
-  padding: 1rem 0;
+  text-align: left; /* Align text to the left */
+  padding: 0.75rem 2rem; /* Adjust padding for spacing */
 }
 
 .menu-links a:hover {
-  color: grey;
-  background-color: rgba(0, 0, 0, 0.05);
+  color: black; /* Keep the same color on hover */
+  background-color: transparent; /* Remove background color on hover */
+}
+
+/* Ensure no list style for menu links */
+.menu-links li {
+  list-style: none;
+}
+
+.close-menu-icon {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 2rem; /* Size of the 'X' */
+  color: black;
+  cursor: pointer;
+  z-index: 1001;
 }
 
 .hamburger-icon.open span:first-child {
-  transform: rotate(45deg) translate(8px, 8px);
+  transform: none;
 }
 
 .hamburger-icon.open span:nth-child(2) {
-  opacity: 0;
+  opacity: 1;
 }
 
 .hamburger-icon.open span:last-child {
-  transform: rotate(-45deg) translate(7px, -7px);
+  transform: none;
+}
+
+/* Removed transformation for hamburger icon when menu is open */
+.hamburger-icon span:first-child {
+  transform: none;
+}
+
+.hamburger-icon span:first-child {
+  opacity: 1;
+}
+
+.hamburger-icon span:first-child {
+  transform: none;
 }
 
 /* Add overlay when menu is open */
