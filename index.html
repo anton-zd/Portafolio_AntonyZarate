@@ -23,8 +23,8 @@
       <li><a href="#projects"><i class='bx bx-code-alt'></i> Proyectos</a></li>
       <li><a href="#contact"><i class='bx bx-envelope'></i> Contacto</a></li>
       <li><button class="mode-toggle" id="modeToggle"><i class='bx bx-moon'></i> Modo Oscuro</button></li>
+      <li><button class="lang-toggle" id="langToggle"><img id="langFlag" src="assets/Skills_section/usa_icon.png" alt="USA" style="width:18px;vertical-align:middle;margin-right:6px;">EN</button></li>
     </ul>
-    <button class="lang-toggle" id="langToggle">EN</button>
     <div class="navbar__toggle" id="navbarToggle">
       <i class='bx bx-menu'></i>
     </div>
@@ -50,7 +50,7 @@
           <span class="stats-title"><i class='bx bx-bar-chart-alt-2'></i> Estadísticas rápidas:</span>
           <div class="stats-list">
             <div class="stat-item"><i class='bx bx-award'></i><div class="stat-text"><span>16.09 / 20</span><small>GPA</small></div></div>
-            <div class="stat-item"><i class='bx bx-code-alt'></i><div class="stat-text"><span>3 Projectos</span><small>Proyectos Totales</small></div></div>
+            <div class="stat-item"><i class='bx bx-code-alt'></i><div class="stat-text"><span>4 Projectos</span><small>Proyectos Totales</small></div></div>
           </div>
         </div>
       </div>
@@ -283,14 +283,21 @@
   <div class="contact-container">
     <h2 class="contact-title">Contacto</h2>
     <p class="skills-subtitle">Comuníquese a través del formulario, las redes sociales o las plataformas de soporte..</p>
-    <div class="contact-tabs">
-      <button class="contact-tab active" id="contactTabBtn"><i class='bx bx-envelope'></i> Contáctame</button>
-      <button class="contact-tab" id="supportTabBtn"><i class='bx bxl-whatsapp'></i> WhatsApp QR</button>
-    </div>
     <div class="contact-content">
       <div class="contact-columns" id="contactContent" style="display: flex;">
         <!-- Left Column: Social Cards -->
         <div class="contact-socials">
+          <!-- Gmail Contact Card -->
+          <div class="contact-card gmail-card" id="gmailContactCard" style="cursor:pointer;">
+            <div class="contact-card-icon"><i class='bx bxl-gmail'></i></div>
+            <div class="contact-card-info">
+              <span class="contact-card-title">Gmail</span>
+              <span class="contact-card-desc gmail-email" id="gmailEmail">
+                <span class="gmail-email-text">antonijorge987@gmail.com</span>
+              </span>
+            </div>
+            <div class="contact-card-arrow gmail-copy-icon" id="gmailCopyIcon" style="color:#e63946; font-size:1.2em; cursor:pointer;"><i class='bx bx-copy'></i></div>
+          </div>
           <a href="https://github.com/anton-zd" class="contact-card" target="_blank" rel="noopener">
             <div class="contact-card-icon"><i class='bx bxl-github'></i></div>
             <div class="contact-card-info">
@@ -316,21 +323,9 @@
             <div class="contact-card-arrow"><i class='bx bx-chevron-right'></i></div>
           </a>
         </div>
-        <!-- Right Column: Contact Form -->
-        <form class="contact-form" autocomplete="off">
-          <div class="contact-form-title"><i class='bx bx-envelope'></i> Enviame un Mensaje</div>
-          <input type="text" class="contact-input" placeholder="Tu Nombre" required />
-          <div class="contact-input-wrapper">
-            <input type="email" class="contact-input" placeholder="Tu Correo" required />
-            <span class="contact-input-icon"><i class='bx bx-envelope'></i></span>
-          </div>
-          <textarea class="contact-input contact-textarea" placeholder="Tu Mensaje" rows="4" required></textarea>
-          <button type="submit" class="contact-send-btn">No enviar__Funcionalidad en Poroceso. <i class='bx bx-chevron-right'></i></button>
-        </form>
-      </div>
-      <div id="supportContent" style="display: none; flex-direction: column; align-items: center; width: 100%;">
+        <!-- Right Column: WhatsApp QR Card -->
         <div class="whatsapp-qr-card">
-          <h3 class="whatsapp-qr-title">Antony Jorge Zarate Davila</h3>
+          <h3 class="whatsapp-qr-title">Antony Zarate Davila</h3>
           <p class="whatsapp-qr-desc">No dudes en contactarme rápidamente en cualquier momento. ¡Gracias! 🙌</p>
           <div class="whatsapp-qr-img-wrapper">
             <img src="assets/whatsaap_qr.png" alt="Whatsapp QR" class="whatsapp-qr-img" />

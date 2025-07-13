@@ -30,7 +30,16 @@ navbarLinks.querySelectorAll('a').forEach(link => {
 
 // Language toggle: only change EN <-> ES, keep all text in Spanish
 langToggle.addEventListener('click', function() {
-  this.textContent = this.textContent === 'EN' ? 'ES' : 'EN';
+  const langFlag = document.getElementById('langFlag');
+  if (this.textContent.trim().endsWith('EN')) {
+    langFlag.src = 'assets/peru_icon.png';
+    langFlag.alt = 'Peru';
+    this.childNodes[1].nodeValue = 'ES';
+  } else {
+    langFlag.src = 'assets/Skills_section/usa_icon.png';
+    langFlag.alt = 'USA';
+    this.childNodes[1].nodeValue = 'EN';
+  }
 });
 
 // Dark mode toggle: change label and icon only
@@ -113,3 +122,36 @@ if (contactTabBtn && supportTabBtn && contactContent && supportContent) {
     supportContent.style.display = 'flex';
   });
 }
+
+// Gmail Copy-to-Clipboard and Animation
+// Ensure this runs after DOM is loaded
+window.addEventListener('DOMContentLoaded', function() {
+  const gmailCard = document.getElementById('gmailContactCard');
+  const gmailEmail = document.getElementById('gmailEmail');
+  const gmailEmailText = gmailEmail ? gmailEmail.querySelector('.gmail-email-text') : null;
+  const gmailCopyIcon = document.getElementById('gmailCopyIcon');
+  const email = 'antonijorge987@gmail.com';
+  let timeoutId = null;
+
+  function showCopied() {
+    if (!gmailEmailText) return;
+    gmailEmailText.textContent = 'Correo Copiado';
+    gmailEmailText.classList.add('copied-animate');
+    if (timeoutId) clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      gmailEmailText.textContent = email;
+      gmailEmailText.classList.remove('copied-animate');
+    }, 1800);
+  }
+
+  function copyEmail() {
+    navigator.clipboard.writeText(email).then(showCopied);
+  }
+
+  if (gmailCard && gmailEmailText) {
+    gmailCard.addEventListener('click', function(e) {
+      copyEmail();
+    });
+  }
+});
+
