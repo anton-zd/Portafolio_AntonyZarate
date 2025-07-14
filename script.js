@@ -31,14 +31,14 @@ navbarLinks.querySelectorAll('a').forEach(link => {
 // Language toggle: only change EN <-> ES, keep all text in Spanish
 langToggle.addEventListener('click', function() {
   const langFlag = document.getElementById('langFlag');
-  if (this.textContent.trim().endsWith('EN')) {
+  if (this.textContent.trim().endsWith('ENG')) {
     langFlag.src = 'assets/peru_icon.png';
     langFlag.alt = 'Peru';
-    this.childNodes[1].nodeValue = 'ES';
+    this.childNodes[1].nodeValue = 'ESP';
   } else {
     langFlag.src = 'assets/Skills_section/usa_icon.png';
     langFlag.alt = 'USA';
-    this.childNodes[1].nodeValue = 'EN';
+    this.childNodes[1].nodeValue = 'ENG';
   }
 });
 
