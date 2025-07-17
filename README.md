@@ -1,5 +1,5 @@
 # Proyecto de Portafolio Personal
-[![Image]](https://github.com/anton-zd/Main-Portfolio/blob/main/assets/begin_page.png?raw=true)
+![Image](https://github.com/anton-zd/Main-Portfolio/blob/main/assets/begin_page.png?raw=true)
 
 Desarrollé un portafolio web dinámico e innovador, con el objetivo de presentar mi perfil profesional de manera creativa y funcional.
 Desarrolle el proyecto desde la concepción de la arquitectura y UX/UI hasta la implementación front-end completa.
