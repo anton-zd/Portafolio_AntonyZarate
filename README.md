@@ -1,5 +1,5 @@
 # Proyecto de Portafolio Personal
-![Image](https://github.com/anton-zd/Main-Portfolio/blob/main/assets/begin_page.png?raw=true)
+![Image](https://github.com/anton-zd/Main-Portfolio/blob/main/assets/Readme_File/begin_page.png?raw=true)
 
 Desarrollé un portafolio web dinámico e innovador, con el objetivo de presentar mi perfil profesional de manera creativa y funcional.
 Desarrolle el proyecto desde la concepción de la arquitectura y UX/UI hasta la implementación front-end completa.
@@ -31,7 +31,7 @@ para el estilo y el diseño responsivo usando media queries.
 Este código crea una barra de navegación de escritorio para mi portafolio. Incluye tu nombre como logotipo y una lista de enlaces a diferentes
 secciones: Acerca de, Habilidades, Proyectos, Contacto y una versión en inglés que aun esta en desarrollo. Los atributos `pid`y `class` permiten
 estilizarla y manipularla con CSS o JavaScript.
-![Image](https://github.com/user-attachments/assets/44f14143-23de-43f9-acb9-28a991400a8a)
+![Image](https://github.com/anton-zd/Main-Portfolio/blob/main/assets/Readme_File/bar_navegation.png?raw=true)
 ```html
 <nav id="desktop-nav">
   <div class="logo">Jorge Antony Zarate Davila</div>
