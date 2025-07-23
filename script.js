@@ -15,8 +15,11 @@ navbarToggle.addEventListener('click', () => {
 // Active link switching
 navbarLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', function(e) {
+    // Remove active from all links
     navbarLinks.querySelectorAll('a').forEach(l => l.classList.remove('active'));
+    // Add active to clicked link
     this.classList.add('active');
+    // Optional: Close menu when a link is clicked (mobile UX)
     if (window.innerWidth <= 700) {
       navbarLinks.classList.remove('active');
       navbarToggle.classList.remove('open');
@@ -83,8 +86,10 @@ const skillsCategories = document.querySelectorAll('.skills-category');
 
 skillsFilters.forEach(btn => {
   btn.addEventListener('click', function() {
+    // Remove active from all
     skillsFilters.forEach(b => b.classList.remove('active'));
     this.classList.add('active');
+    // Show only the selected category
     const filter = this.getAttribute('data-filter');
     skillsCategories.forEach(cat => {
       if (cat.classList.contains('skills-' + filter)) {
@@ -96,6 +101,7 @@ skillsFilters.forEach(btn => {
   });
 });
 
+// Contact section tab switching
 const contactTabBtn = document.getElementById('contactTabBtn');
 const supportTabBtn = document.getElementById('supportTabBtn');
 const contactContent = document.getElementById('contactContent');
@@ -117,6 +123,8 @@ if (contactTabBtn && supportTabBtn && contactContent && supportContent) {
   });
 }
 
+// Gmail Copy-to-Clipboard and Animation
+// Ensure this runs after DOM is loaded
 window.addEventListener('DOMContentLoaded', function() {
   const gmailCard = document.getElementById('gmailContactCard');
   const gmailEmail = document.getElementById('gmailEmail');
