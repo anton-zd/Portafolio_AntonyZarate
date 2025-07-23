@@ -1,3 +1,7 @@
+if (history.scrollRestoration) {
+  history.scrollRestoration = 'manual';
+}
+
 // Responsive Navbar Toggle
 const navbarToggle = document.getElementById('navbarToggle');
 const navbarLinks = document.getElementById('navbarLinks');
@@ -172,7 +176,7 @@ window.addEventListener('DOMContentLoaded', function() {
   let programsPerPage = 6;
   let totalPages = Math.ceil(totalPrograms / programsPerPage);
 
-  function showPage(page) {
+  function showPage(page, doScroll = false) {
     if (page < 1 || page > totalPages) return;
     currentPage = page;
 
@@ -186,7 +190,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     updatePaginationUI();
 
-    if (window.innerWidth <= 700 && filtersElement) {
+    if (doScroll && window.innerWidth <= 700 && filtersElement) {
       filtersElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
@@ -217,22 +221,22 @@ window.addEventListener('DOMContentLoaded', function() {
 
   function setupEventListeners() {
     if (prevBtn) {
-      prevBtn.addEventListener('click', () => showPage(currentPage - 1));
+      prevBtn.addEventListener('click', () => showPage(currentPage - 1, true));
     }
     if (nextBtn) {
-      nextBtn.addEventListener('click', () => showPage(currentPage + 1));
+      nextBtn.addEventListener('click', () => showPage(currentPage + 1, true));
     }
     pageButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const page = parseInt(btn.dataset.page);
-        showPage(page);
+        showPage(page, true);
       });
     });
   }
 
   function init() {
     if (window.innerWidth <= 700) {
-      showPage(1);
+      showPage(1, false);
     } else {
       // On desktop, show all program cards
       programCards.forEach(card => card.style.display = 'flex');
@@ -290,7 +294,7 @@ window.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  function showPage(page) {
+  function showPage(page, doScroll = false) {
     // Ensure the view is up-to-date before showing a page
     updatePaginationVariables();
     if (page < 1 || page > totalPages) return;
@@ -309,8 +313,8 @@ window.addEventListener('DOMContentLoaded', function() {
 
     updatePaginationUI();
 
-    // Scroll to the top of the skills section for better UX
-    if (skillsSection) {
+    // Scroll to the top of the skills section for better UX, only when requested
+    if (doScroll && skillsSection) {
       skillsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
@@ -338,15 +342,15 @@ window.addEventListener('DOMContentLoaded', function() {
 
   function setupEventListeners() {
     if (prevBtn) {
-      prevBtn.addEventListener('click', () => showPage(currentPage - 1));
+      prevBtn.addEventListener('click', () => showPage(currentPage - 1, true));
     }
     if (nextBtn) {
-      nextBtn.addEventListener('click', () => showPage(currentPage + 1));
+      nextBtn.addEventListener('click', () => showPage(currentPage + 1, true));
     }
     pageButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const page = parseInt(btn.dataset.page);
-        showPage(page);
+        showPage(page, true);
       });
     });
   }
@@ -355,7 +359,7 @@ window.addEventListener('DOMContentLoaded', function() {
       updatePaginationVariables();
       // Only show the first page if the category is visible
       if (getComputedStyle(certsCategory).display !== 'none') {
-          showPage(1);
+          showPage(1, false);
       } else {
           // If the category is hidden, hide all cards until it's shown
           certCards.forEach(card => card.style.display = 'none');
@@ -376,7 +380,7 @@ window.addEventListener('DOMContentLoaded', function() {
       }
       
       if (getComputedStyle(certsCategory).display !== 'none') {
-        showPage(currentPage);
+        showPage(currentPage, false);
       } else {
         // On resize, if the category is not visible, ensure cards are hidden
         certCards.forEach(card => card.style.display = 'none');
