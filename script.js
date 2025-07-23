@@ -157,119 +157,178 @@ window.addEventListener('DOMContentLoaded', function() {
 
 
 // =================== MOBILE PROGRAMS PAGINATION ===================
-let currentProgramsPage = 1;
-const totalProgramsPages = 2;
-
-function changeProgramsPage(direction) {
-  const newPage = currentProgramsPage + direction;
-  if (newPage >= 1 && newPage <= totalProgramsPages) {
-    goToProgramsPage(newPage);
-  }
-}
-
-function goToProgramsPage(pageNumber) {
-  if (pageNumber < 1 || pageNumber > totalProgramsPages) return;
-  
-  // Hide current page
-  const currentPageElement = document.querySelector('.programs-page.active');
-  if (currentPageElement) {
-    currentPageElement.classList.remove('active');
-    currentPageElement.style.display = 'none';
-  }
-  
-  // Show new page
-  const newPageElement = document.querySelector(`.programs-page[data-page="${pageNumber}"]`);
-  if (newPageElement) {
-    newPageElement.classList.add('active');
-    newPageElement.style.display = 'grid';
-  }
-  
-  // Update pagination buttons
-  currentProgramsPage = pageNumber;
-  updateProgramsPaginationButtons();
-}
-
-function updateProgramsPaginationButtons() {
-  // Update Previous/Next buttons
-  const prevBtn = document.getElementById('programsPrevBtn');
-  const nextBtn = document.getElementById('programsNextBtn');
-  
-  if (prevBtn) {
-    prevBtn.disabled = currentProgramsPage === 1;
-  }
-  if (nextBtn) {
-    nextBtn.disabled = currentProgramsPage === totalProgramsPages;
-  }
-  
-  // Update number buttons
-  const numberButtons = document.querySelectorAll('.mobile-pagination-number');
-  numberButtons.forEach((btn, index) => {
-    const pageNum = index + 1;
-    if (pageNum === currentProgramsPage) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
-    }
-  });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  goToProgramsPage(1);
-});
-
-// =================== CERTIFICATES PAGINATION (DESKTOP) ===================
 (function() {
-  const certsPerPage = 6;
-  const totalCerts = document.querySelectorAll('.skills-category.skills-certs .cert-card').length;
-  const totalPages = Math.ceil(totalCerts / certsPerPage);
-  let currentPage = 1;
+  const programsContainer = document.querySelector('.skills-category.skills-programs');
+  if (!programsContainer) return;
 
+  const totalPrograms = programsContainer.querySelectorAll('.skill-card').length;
+  const prevBtn = document.getElementById('programPrevBtn');
+  const nextBtn = document.getElementById('programNextBtn');
+  const pageButtons = programsContainer.querySelectorAll('.program-pagination-page');
+  const programCards = programsContainer.querySelectorAll('.skill-card[data-program]');
+  const filtersElement = document.querySelector('.skills-filters');
+
+  let currentPage = 1;
+  let programsPerPage = 6;
+  let totalPages = Math.ceil(totalPrograms / programsPerPage);
+
+  function showPage(page) {
+    if (page < 1 || page > totalPages) return;
+    currentPage = page;
+
+    const start = (page - 1) * programsPerPage;
+    const end = start + programsPerPage;
+
+    programCards.forEach((card, index) => {
+      const isVisible = window.innerWidth > 700 || (index >= start && index < end);
+      card.style.display = isVisible ? 'flex' : 'none';
+    });
+
+    updatePaginationUI();
+
+    if (window.innerWidth <= 700 && filtersElement) {
+      filtersElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  function updatePaginationUI() {
+    if (window.innerWidth > 700) {
+      // Hide pagination on desktop
+      const paginationWrapper = programsContainer.querySelector('.programs-pagination-wrapper');
+      if (paginationWrapper) {
+        paginationWrapper.style.display = 'none';
+      }
+      return;
+    }
+    
+    const paginationWrapper = programsContainer.querySelector('.programs-pagination-wrapper');
+    if (paginationWrapper) {
+        paginationWrapper.style.display = 'flex';
+    }
+
+    if (prevBtn) prevBtn.disabled = currentPage === 1;
+    if (nextBtn) nextBtn.disabled = currentPage === totalPages;
+
+    pageButtons.forEach(btn => {
+      const pageNum = parseInt(btn.dataset.page);
+      btn.classList.toggle('active', pageNum === currentPage);
+    });
+  }
+
+  function setupEventListeners() {
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => showPage(currentPage - 1));
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => showPage(currentPage + 1));
+    }
+    pageButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const page = parseInt(btn.dataset.page);
+        showPage(page);
+      });
+    });
+  }
+
+  function init() {
+    if (window.innerWidth <= 700) {
+      showPage(1);
+    } else {
+      // On desktop, show all program cards
+      programCards.forEach(card => card.style.display = 'flex');
+    }
+    updatePaginationUI();
+  }
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(init, 250);
+  });
+
+  const programsFilter = document.querySelector('.skills-filter[data-filter="programs"]');
+  if (programsFilter) {
+    programsFilter.addEventListener('click', () => {
+      setTimeout(() => {
+        currentPage = 1;
+        init();
+      }, 50);
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    setupEventListeners();
+    init();
+  });
+
+})();
+
+
+// =================== CERTIFICATES PAGINATION (RESPONSIVE) ===================
+(function() {
+  const totalCerts = document.querySelectorAll('.skills-category.skills-certs .cert-card').length;
   const prevBtn = document.getElementById('certPrevBtn');
   const nextBtn = document.getElementById('certNextBtn');
   const pageButtons = document.querySelectorAll('.cert-pagination-page');
   const certCards = document.querySelectorAll('.cert-card[data-cert]');
+  const certsCategory = document.querySelector('.skills-category.skills-certs');
+  const skillsSection = document.getElementById('skills');
+
+  let currentPage = 1;
+  let certsPerPage;
+  let totalPages;
+
+  function updatePaginationVariables() {
+    if (window.innerWidth <= 700) {
+      // Mobile settings
+      certsPerPage = 3;
+      totalPages = Math.ceil(totalCerts / certsPerPage); // Should be 3
+    } else {
+      // Desktop settings
+      certsPerPage = 6;
+      totalPages = 2; // Hardcoded for desktop as per original logic
+    }
+  }
 
   function showPage(page) {
+    // Ensure the view is up-to-date before showing a page
+    updatePaginationVariables();
     if (page < 1 || page > totalPages) return;
     currentPage = page;
 
     const start = (page - 1) * certsPerPage;
     const end = start + certsPerPage;
 
-    // Hide all cards first
-    certCards.forEach(card => {
-      card.style.display = 'none';
-    });
-
-    // Show cards for the current page
-    for (let i = start; i < end && i < totalCerts; i++) {
-      if(certCards[i]) {
-        certCards[i].style.display = 'flex';
+    certCards.forEach((card, index) => {
+      if (index >= start && index < end) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
       }
-    }
+    });
 
     updatePaginationUI();
 
-    // Prevent scroll jump by anchoring the view to the top of the skills filters
-    const filtersElement = document.querySelector('.skills-filters');
-    if (filtersElement) {
-      setTimeout(() => {
-        const rect = filtersElement.getBoundingClientRect();
-        if (rect.top < 0 || rect.top > window.innerHeight) {
-          filtersElement.scrollIntoView({ behavior: 'auto', block: 'start' });
-        }
-      }, 0);
+    // Scroll to the top of the skills section for better UX
+    if (skillsSection) {
+      skillsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
 
   function updatePaginationUI() {
-    // Update prev/next buttons
     if (prevBtn) prevBtn.disabled = currentPage === 1;
     if (nextBtn) nextBtn.disabled = currentPage === totalPages;
 
-    // Update page number buttons
     pageButtons.forEach(btn => {
-      if (parseInt(btn.dataset.page) === currentPage) {
+      const pageNum = parseInt(btn.dataset.page);
+      // Hide buttons that are for pages beyond the total for the current view
+      if (pageNum > totalPages) {
+        btn.style.display = 'none';
+      } else {
+        btn.style.display = 'flex';
+      }
+
+      if (pageNum === currentPage) {
         btn.classList.add('active');
       } else {
         btn.classList.remove('active');
@@ -279,21 +338,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function setupEventListeners() {
     if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        if (currentPage > 1) {
-          showPage(currentPage - 1);
-        }
-      });
+      prevBtn.addEventListener('click', () => showPage(currentPage - 1));
     }
-
     if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        if (currentPage < totalPages) {
-          showPage(currentPage + 1);
-        }
-      });
+      nextBtn.addEventListener('click', () => showPage(currentPage + 1));
     }
-
     pageButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const page = parseInt(btn.dataset.page);
@@ -302,44 +351,57 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // And only if the certificates category is visible (desktop)
   function init() {
-      const certsCategory = document.querySelector('.skills-category.skills-certs');
-      if (window.innerWidth > 700) {
+      updatePaginationVariables();
+      // Only show the first page if the category is visible
+      if (getComputedStyle(certsCategory).display !== 'none') {
           showPage(1);
+      } else {
+          // If the category is hidden, hide all cards until it's shown
+          certCards.forEach(card => card.style.display = 'none');
       }
-      
-      // Also re-init on resize to handle view changes
-      let resizeTimer;
-      window.addEventListener('resize', () => {
-          clearTimeout(resizeTimer);
-          resizeTimer = setTimeout(() => {
-              if (window.innerWidth > 700) {
-                  if (getComputedStyle(certsCategory).display !== 'none') {
-                      showPage(currentPage);
-                  }
-              } else {
-                  certCards.forEach(card => card.style.display = 'flex');
-              }
-          }, 250);
-      });
-      
-      // Re-check when filters are clicked
-      const skillsFilters = document.querySelectorAll('.skills-filter[data-filter="certs"]');
-      skillsFilters.forEach(filter => {
-          filter.addEventListener('click', () => {
-              setTimeout(() => {
-                  if (getComputedStyle(certsCategory).display !== 'none' && window.innerWidth > 700) {
-                      showPage(1);
-                  }
-              }, 50);
-          });
-      });
   }
 
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      const isMobileBefore = certsPerPage === 3;
+      updatePaginationVariables();
+      const isMobileAfter = certsPerPage === 3;
+
+      // Reset to page 1 if the layout changes between mobile/desktop
+      if (isMobileBefore !== isMobileAfter) {
+        currentPage = 1;
+      }
+      
+      if (getComputedStyle(certsCategory).display !== 'none') {
+        showPage(currentPage);
+      } else {
+        // On resize, if the category is not visible, ensure cards are hidden
+        certCards.forEach(card => card.style.display = 'none');
+      }
+    }, 250);
+  });
+
+  // Re-check when the certificates filter is clicked
+  const certsFilter = document.querySelector('.skills-filter[data-filter="certs"]');
+  if (certsFilter) {
+    certsFilter.addEventListener('click', () => {
+      // Use a timeout to allow the browser to update the display style of the category
+      setTimeout(() => {
+        currentPage = 1; // Always reset to page 1 when filter is clicked
+        init();
+      }, 50);
+    });
+  }
+  
+  // Initial setup on DOM load
   document.addEventListener('DOMContentLoaded', () => {
-      setupEventListeners();
-      init();
+    setupEventListeners();
+    // Hide all cards initially, let the logic show them based on view.
+    certCards.forEach(card => card.style.display = 'none');
+    init();
   });
 
 })();
