@@ -155,3 +155,191 @@ window.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+
+// =================== MOBILE PROGRAMS PAGINATION ===================
+let currentProgramsPage = 1;
+const totalProgramsPages = 2;
+
+function changeProgramsPage(direction) {
+  const newPage = currentProgramsPage + direction;
+  if (newPage >= 1 && newPage <= totalProgramsPages) {
+    goToProgramsPage(newPage);
+  }
+}
+
+function goToProgramsPage(pageNumber) {
+  if (pageNumber < 1 || pageNumber > totalProgramsPages) return;
+  
+  // Hide current page
+  const currentPageElement = document.querySelector('.programs-page.active');
+  if (currentPageElement) {
+    currentPageElement.classList.remove('active');
+    currentPageElement.style.display = 'none';
+  }
+  
+  // Show new page
+  const newPageElement = document.querySelector(`.programs-page[data-page="${pageNumber}"]`);
+  if (newPageElement) {
+    newPageElement.classList.add('active');
+    newPageElement.style.display = 'grid';
+  }
+  
+  // Update pagination buttons
+  currentProgramsPage = pageNumber;
+  updateProgramsPaginationButtons();
+}
+
+function updateProgramsPaginationButtons() {
+  // Update Previous/Next buttons
+  const prevBtn = document.getElementById('programsPrevBtn');
+  const nextBtn = document.getElementById('programsNextBtn');
+  
+  if (prevBtn) {
+    prevBtn.disabled = currentProgramsPage === 1;
+  }
+  if (nextBtn) {
+    nextBtn.disabled = currentProgramsPage === totalProgramsPages;
+  }
+  
+  // Update number buttons
+  const numberButtons = document.querySelectorAll('.mobile-pagination-number');
+  numberButtons.forEach((btn, index) => {
+    const pageNum = index + 1;
+    if (pageNum === currentProgramsPage) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  goToProgramsPage(1);
+});
+
+// =================== CERTIFICATES PAGINATION (DESKTOP) ===================
+(function() {
+  const certsPerPage = 6;
+  const totalCerts = document.querySelectorAll('.skills-category.skills-certs .cert-card').length;
+  const totalPages = Math.ceil(totalCerts / certsPerPage);
+  let currentPage = 1;
+
+  const prevBtn = document.getElementById('certPrevBtn');
+  const nextBtn = document.getElementById('certNextBtn');
+  const pageButtons = document.querySelectorAll('.cert-pagination-page');
+  const certCards = document.querySelectorAll('.cert-card[data-cert]');
+
+  function showPage(page) {
+    if (page < 1 || page > totalPages) return;
+    currentPage = page;
+
+    const start = (page - 1) * certsPerPage;
+    const end = start + certsPerPage;
+
+    // Hide all cards first
+    certCards.forEach(card => {
+      card.style.display = 'none';
+    });
+
+    // Show cards for the current page
+    for (let i = start; i < end && i < totalCerts; i++) {
+      if(certCards[i]) {
+        certCards[i].style.display = 'flex';
+      }
+    }
+
+    updatePaginationUI();
+
+    // Prevent scroll jump by anchoring the view to the top of the skills filters
+    const filtersElement = document.querySelector('.skills-filters');
+    if (filtersElement) {
+      setTimeout(() => {
+        const rect = filtersElement.getBoundingClientRect();
+        if (rect.top < 0 || rect.top > window.innerHeight) {
+          filtersElement.scrollIntoView({ behavior: 'auto', block: 'start' });
+        }
+      }, 0);
+    }
+  }
+
+  function updatePaginationUI() {
+    // Update prev/next buttons
+    if (prevBtn) prevBtn.disabled = currentPage === 1;
+    if (nextBtn) nextBtn.disabled = currentPage === totalPages;
+
+    // Update page number buttons
+    pageButtons.forEach(btn => {
+      if (parseInt(btn.dataset.page) === currentPage) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+  }
+
+  function setupEventListeners() {
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+          showPage(currentPage - 1);
+        }
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+          showPage(currentPage + 1);
+        }
+      });
+    }
+
+    pageButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const page = parseInt(btn.dataset.page);
+        showPage(page);
+      });
+    });
+  }
+
+  // And only if the certificates category is visible (desktop)
+  function init() {
+      const certsCategory = document.querySelector('.skills-category.skills-certs');
+      if (window.innerWidth > 700) {
+          showPage(1);
+      }
+      
+      // Also re-init on resize to handle view changes
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(() => {
+              if (window.innerWidth > 700) {
+                  if (getComputedStyle(certsCategory).display !== 'none') {
+                      showPage(currentPage);
+                  }
+              } else {
+                  certCards.forEach(card => card.style.display = 'flex');
+              }
+          }, 250);
+      });
+      
+      // Re-check when filters are clicked
+      const skillsFilters = document.querySelectorAll('.skills-filter[data-filter="certs"]');
+      skillsFilters.forEach(filter => {
+          filter.addEventListener('click', () => {
+              setTimeout(() => {
+                  if (getComputedStyle(certsCategory).display !== 'none' && window.innerWidth > 700) {
+                      showPage(1);
+                  }
+              }, 50);
+          });
+      });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+      setupEventListeners();
+      init();
+  });
+
+})();
