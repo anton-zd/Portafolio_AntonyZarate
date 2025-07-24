@@ -19,11 +19,8 @@ navbarToggle.addEventListener('click', () => {
 // Active link switching
 navbarLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', function(e) {
-    // Remove active from all links
     navbarLinks.querySelectorAll('a').forEach(l => l.classList.remove('active'));
-    // Add active to clicked link
     this.classList.add('active');
-    // Optional: Close menu when a link is clicked (mobile UX)
     if (window.innerWidth <= 700) {
       navbarLinks.classList.remove('active');
       navbarToggle.classList.remove('open');
@@ -90,10 +87,8 @@ const skillsCategories = document.querySelectorAll('.skills-category');
 
 skillsFilters.forEach(btn => {
   btn.addEventListener('click', function() {
-    // Remove active from all
     skillsFilters.forEach(b => b.classList.remove('active'));
     this.classList.add('active');
-    // Show only the selected category
     const filter = this.getAttribute('data-filter');
     skillsCategories.forEach(cat => {
       if (cat.classList.contains('skills-' + filter)) {
@@ -197,7 +192,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
   function updatePaginationUI() {
     if (window.innerWidth > 700) {
-      // Hide pagination on desktop
       const paginationWrapper = programsContainer.querySelector('.programs-pagination-wrapper');
       if (paginationWrapper) {
         paginationWrapper.style.display = 'none';
@@ -238,7 +232,6 @@ window.addEventListener('DOMContentLoaded', function() {
     if (window.innerWidth <= 700) {
       showPage(1, false);
     } else {
-      // On desktop, show all program cards
       programCards.forEach(card => card.style.display = 'flex');
     }
     updatePaginationUI();
@@ -276,7 +269,7 @@ window.addEventListener('DOMContentLoaded', function() {
   const pageButtons = document.querySelectorAll('.cert-pagination-page');
   const certCards = document.querySelectorAll('.cert-card[data-cert]');
   const certsCategory = document.querySelector('.skills-category.skills-certs');
-  const skillsSection = document.getElementById('skills');
+  const filtersElement = document.querySelector('.skills-filters');
 
   let currentPage = 1;
   let certsPerPage;
@@ -284,18 +277,15 @@ window.addEventListener('DOMContentLoaded', function() {
 
   function updatePaginationVariables() {
     if (window.innerWidth <= 700) {
-      // Mobile settings
       certsPerPage = 3;
-      totalPages = Math.ceil(totalCerts / certsPerPage); // Should be 3
+      totalPages = Math.ceil(totalCerts / certsPerPage); 
     } else {
-      // Desktop settings
       certsPerPage = 6;
-      totalPages = 2; // Hardcoded for desktop as per original logic
+      totalPages = 2; 
     }
   }
 
   function showPage(page, doScroll = false) {
-    // Ensure the view is up-to-date before showing a page
     updatePaginationVariables();
     if (page < 1 || page > totalPages) return;
     currentPage = page;
@@ -313,9 +303,8 @@ window.addEventListener('DOMContentLoaded', function() {
 
     updatePaginationUI();
 
-    // Scroll to the top of the skills section for better UX, only when requested
-    if (doScroll && skillsSection) {
-      skillsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (doScroll && filtersElement) {
+      filtersElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
 
@@ -325,7 +314,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
     pageButtons.forEach(btn => {
       const pageNum = parseInt(btn.dataset.page);
-      // Hide buttons that are for pages beyond the total for the current view
       if (pageNum > totalPages) {
         btn.style.display = 'none';
       } else {
@@ -357,11 +345,9 @@ window.addEventListener('DOMContentLoaded', function() {
 
   function init() {
       updatePaginationVariables();
-      // Only show the first page if the category is visible
       if (getComputedStyle(certsCategory).display !== 'none') {
           showPage(1, false);
       } else {
-          // If the category is hidden, hide all cards until it's shown
           certCards.forEach(card => card.style.display = 'none');
       }
   }
@@ -374,7 +360,6 @@ window.addEventListener('DOMContentLoaded', function() {
       updatePaginationVariables();
       const isMobileAfter = certsPerPage === 3;
 
-      // Reset to page 1 if the layout changes between mobile/desktop
       if (isMobileBefore !== isMobileAfter) {
         currentPage = 1;
       }
@@ -382,7 +367,6 @@ window.addEventListener('DOMContentLoaded', function() {
       if (getComputedStyle(certsCategory).display !== 'none') {
         showPage(currentPage, false);
       } else {
-        // On resize, if the category is not visible, ensure cards are hidden
         certCards.forEach(card => card.style.display = 'none');
       }
     }, 250);
@@ -392,9 +376,8 @@ window.addEventListener('DOMContentLoaded', function() {
   const certsFilter = document.querySelector('.skills-filter[data-filter="certs"]');
   if (certsFilter) {
     certsFilter.addEventListener('click', () => {
-      // Use a timeout to allow the browser to update the display style of the category
       setTimeout(() => {
-        currentPage = 1; // Always reset to page 1 when filter is clicked
+        currentPage = 1;
         init();
       }, 50);
     });
@@ -403,7 +386,6 @@ window.addEventListener('DOMContentLoaded', function() {
   // Initial setup on DOM load
   document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
-    // Hide all cards initially, let the logic show them based on view.
     certCards.forEach(card => card.style.display = 'none');
     init();
   });
