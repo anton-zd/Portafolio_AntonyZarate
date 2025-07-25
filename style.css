@@ -1996,27 +1996,7 @@ body {
   text-align: center;
   margin-bottom: 0.3rem;
 }
-.cert-btn {
-  background: #23272f !important;
-  color: #fff !important;
-  border: none !important;
-  border-radius: 16px !important;
-  font-weight: 700;
-  font-size: 1.08rem;
-  padding: 1.1rem 0 !important;
-  box-shadow: 0 2px 8px 0 rgba(30,34,40,0.07);
-  width: 100%;
-  max-width: 340px;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
-}
-.cert-btn:hover {
-  background: #23272f !important;
-  color: #fff !important;
-  cursor: pointer;
-}
+
 @media (max-width: 900px) {
   .cert-card {
     min-width: 180px;
@@ -2063,13 +2043,9 @@ body {
   }
 }
 
-/* --- Projects Section Styles --- */
-.projects-section {
-  width: 100vw;
-  background: #fff;
-  padding: 3.5rem 0 2.5rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
+@media (max-width: 700px) {
+  .cert-card .btn {
+    margin-top: 10px;
+    margin-bottom: 5px; 
+  }
 }
