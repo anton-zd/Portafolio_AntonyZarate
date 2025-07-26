@@ -44,12 +44,12 @@
         </div>
         <div class="home-buttons">
           <a href="#projects" class="btn btn-primary"><i class='bx bx-code-alt'></i> Mis Proyectos</a>
-          <a href="assets/CV_Antony_Zarate.pdf" class="btn btn-secondary" target="_blank" rel="noopener"><i class='bx bx-download'></i> Download CV</a>
+          <a href="assets/CV_Antony_Zarate.pdff" class="btn btn-secondary" target="_blank" rel="noopener"><i class='bx bx-download'></i> Download CV</a>
         </div>
         <div class="home-stats">
           <span class="stats-title"><i class='bx bx-bar-chart-alt-2'></i> Estadísticas rápidas:</span>
           <div class="stats-list">
-            <div class="stat-item"><i class='bx bx-award'></i><div class="stat-text"><span>Medio Superior</span><small>Categorías de rendimiento</small></div></div>
+            <div class="stat-item"><i class='bx bx-award'></i><div class="stat-text"><span>Medio Superior</span><small>Categoría de rendimiento</small></div></div>
             <div class="stat-item"><i class='bx bx-code-alt'></i><div class="stat-text"><span>4 Projectos</span><small>Proyectos Totales</small></div></div>
           </div>
         </div>
@@ -178,7 +178,7 @@
               </div>
               <div class="skill-info cert-info">
                 <span>Power BI - Intermedio (Dax, KPI, Power Query)</span>
-                <button class="btn btn-primary cert-btn" onclick="window.open('https://certificados.uni.edu.pe/verificador/search.php?cert_id=cert_ab099e2882010e7420717c127141d6ee','_blank')">Ver Certificado</button>
+                <button class="btn btn-primary cert-btn" onclick="window.open('https://certificados.uni.edu.pe/verificador/search.php?cert_id=cert_ab099e2882010e7420717c127141d6ee','_blank')"><i class='bx bxs-badge-check'></i> Ver Certificado</button>
               </div>
             </div>
             <div class="skill-card cert-card" data-cert="2">
@@ -187,7 +187,7 @@
               </div>
               <div class="skill-info cert-info">
                 <span>MS Project aplicado a la Gestión de Proyectos</span>
-                <button class="btn btn-primary cert-btn" onclick="window.open('https://certificados.uni.edu.pe/verificador/search.php?cert_id=cert_1a4191e1c73708015ff91f8b0101fb02','_blank')">Ver Certificado</button>
+                <button class="btn btn-primary cert-btn" onclick="window.open('https://certificados.uni.edu.pe/verificador/search.php?cert_id=cert_1a4191e1c73708015ff91f8b0101fb02','_blank')"><i class='bx bxs-badge-check'></i> Ver Certificado</button>
               </div>
             </div>
             <div class="skill-card cert-card" data-cert="3">
@@ -196,7 +196,7 @@
               </div>
               <div class="skill-info cert-info">
                 <span>Microsoft Excel Avanzado (Macros, Power Query, Tablas Dinamicas)</span>
-                <button class="btn btn-primary cert-btn" onclick="window.open('https://aprendemasstorage.blob.core.windows.net/aprendemascertificados/84f5c526-c29f-48a1-0752-08dc8bb2e8ec_79756.pdf','_blank')">Ver Certificado</button>
+                <button class="btn btn-primary cert-btn" onclick="window.open('https://aprendemasstorage.blob.core.windows.net/aprendemascertificados/84f5c526-c29f-48a1-0752-08dc8bb2e8ec_79756.pdf','_blank')"><i class='bx bxs-badge-check'></i> Ver Certificado</button>
               </div>
             </div>
             <div class="skill-card cert-card" data-cert="4">
@@ -259,60 +259,90 @@
     <div class="projects-container">
       <h2 class="projects-title">Mis Proyectos</h2>
       <p class="projects-subtitle">Explora algunos de los trabajos que he creado — Bases de datos, Diseño de aplicaciones y desarrollo de dashboards.</p>
-      <div class="projects-list">
+            <div class="projects-list">
         <!-- Power BI Project -->
         <div class="project-card">
           <div class="project-img-wrapper">
-            <img src="assets/power bi project_1.png" alt="Proyecto Power BI" class="project-img" />
+            <img src="assets/power bi project_1.png" alt="Dashboard de Ventas" class="project-img">
           </div>
           <div class="project-info">
-            <h3>Creación de un dashboard para el analisis de una tienda en línea.</h3>
-            <p>Dashboard de análisis avanzado con integración de datos en tiempo real</p>
+            <div class="project-tags">
+              <span class="project-tag">Power BI</span>
+              <span class="project-tag">DAX</span>
+              <span class="project-tag">Power Query</span>
+            </div>
+            <div class="project-header">
+              <h3 class="project-title">Dashboard de Ventas Interactivo</h3>
+              <span class="project-level"><i class='bx bxs-bar-chart-alt-2'></i> Nivel Intermedio</span>
+            </div>
+            <p class="project-description">Dashboard dinámico para el análisis de KPIs y rendimiento de productos, permitiendo la toma de decisiones basada en datos.</p>
             <div class="project-actions">
-              <a href="assets\Projects_section\PowerBIProject_01.pbix" class="btn btn-secondary project-btn" target="_blank" rel="noopener"><i class='bx bx-code-alt'></i> Descargar (Soon on GitHub)</a>
+              <a href="assets/Projects_section/PowerBIProject_01.pbix" target="_blank" rel="noopener noreferrer" class="project-btn"><i class='bx bx-link-external'></i> Descargar</a>
             </div>
           </div>
         </div>
         <!-- SQL Project -->
         <div class="project-card">
           <div class="project-img-wrapper">
-            <img src="assets/sql project_1.png" alt="Proyecto SQL" class="project-img" />
+            <img src="assets/sql project_1.png" alt="Base de Datos para E-commerce" class="project-img">
           </div>
           <div class="project-info">
-            <h3>Analisis de patrones de gasto en alimentos en el Perú.</h3>
-            <p>Proyecto de diseño de base de datos y optimización de consultas complejas</p>
+            <div class="project-tags">
+              <span class="project-tag">MySQL</span>
+              <span class="project-tag">DB Design</span>
+              <span class="project-tag">Triggers</span>
+            </div>
+            <div class="project-header">
+              <h3 class="project-title">Análisis de patrones de gasto en el Perú.</h3>
+              <span class="project-level"><i class='bx bxs-bar-chart-alt-2'></i> Nivel Intermedio</span>
+            </div>
+            <p class="project-description">Análisis de gastos en alimentos, identificando patrones de compra mediante consultas SQL y grandes conjuntos de datos.</p>
             <div class="project-actions">
-              <a href="https://github.com/anton-zd/Analisis-de-patrones-de-gasto-en-alimentos-y-compras-diarias-esenciales-en-el-Per-." class="btn btn-secondary project-btn" target="_blank" rel="noopener"><i class='bx bx-code-alt'></i> Ver Proyecto</a>
+              <a href="https://github.com/anton-zd/Analisis-de-patrones-de-gasto-en-alimentos-y-compras-diarias-esenciales-en-el-Per-." target="_blank" rel="noopener noreferrer" class="project-btn"><i class='bx bx-link-external'></i> Ir al proyecto</a>
             </div>
           </div>
         </div>
         <!-- HTML y CSS Project -->
         <div class="project-card">
           <div class="project-img-wrapper">
-            <img src="assets/html y css project_1_PRONTO.png" alt="Proyecto HTML y CSS" class="project-img" />
+            <img src="Readme_File/begin_page.png" alt="Portfolio Personal" class="project-img">
           </div>
           <div class="project-info">
-            <h3>Desarrollo de un portafolio para mostrar habilidades y proyectos.</h3>
-            <p>Aplicación web responsiva construida con técnicas modernas de HTML y CSS</p>
+            <div class="project-tags">
+              <span class="project-tag">HTML</span>
+              <span class="project-tag">CSS</span>
+              <span class="project-tag">JavaScript</span>
+            </div>
+            <div class="project-header">
+              <h3 class="project-title">Portfolio Web Personal</h3>
+              <span class="project-level"><i class='bx bxs-bar-chart-alt-2'></i> Nivel Intermedio</span>
+            </div>
+            <p class="project-description">Aplicación web responsiva construida con técnicas modernas de HTML, CSS y JavaScript para mostrar habilidades y proyectos.</p>
             <div class="project-actions">
-              <a href="https://github.com/anton-zd/Main-Portfolio" class="btn btn-secondary project-btn" target="_blank" rel="noopener"><i class='bx bx-code-alt'></i> Ver Proyecto</a>
+              <a href="https://github.com/anton-zd/Main-Portfolio" target="_blank" rel="noopener noreferrer" class="project-btn"><i class='bx bx-link-external'></i> Ir al proyecto</a>
             </div>
           </div>
         </div>
         <!-- Figma Project -->
         <div class="project-card">
           <div class="project-img-wrapper">
-            <img src="assets/figma_project_1_PRONTO.png" alt="Diseño de una aplicación para un puesto de abarrotes en Figma" class="project-img" />
+            <img src="assets/figma_project_1_PRONTO.png" alt="Diseño de App Móvil" class="project-img">
           </div>
           <div class="project-info">
-            <h3>Diseño de una aplicación para un puesto de abarrotes en Figma</h3>
-            <p>Prototipo interactivo de una aplicación de ventas y gestión para abarrotes.</p>
+            <div class="project-tags">
+              <span class="project-tag">Figma</span>
+              <span class="project-tag">UI/UX</span>
+            </div>
+            <div class="project-header">
+              <h3 class="project-title">Diseño de App Móvil en Figma</h3>
+              <span class="project-level"><i class='bx bxs-bar-chart-alt-2'></i> Nivel Básico</span>
+            </div>
+            <p class="project-description">Prototipo de alta fidelidad para una aplicación móvil, enfocado en la experiencia de usuario y una interfaz intuitiva y atractiva.</p>
             <div class="project-actions">
-              <a href="https://www.figma.com/proto/9rm21fLKnSm0LomECPA8cR/Manejo-de-Interfas?node-id=74-11&starting-point-node-id=21%3A27&show-proto-sidebar=1" class="btn btn-secondary project-btn" target="_blank" rel="noopener"><i class='bx bx-code-alt'></i> Ver Proyecto</a>
+              <a href="https://www.figma.com/proto/9rm21fLKnSm0LomECPA8cR/Manejo-de-Interfas?node-id=21-27&starting-point-node-id=21%3A27&t=KBWzvAgBh0zqNFqo-1" target="_blank" rel="noopener noreferrer" class="project-btn"><i class='bx bx-link-external'></i> Ir al proyecto</a>
             </div>
           </div>
         </div>
-      </div>
     </div>
   </section>
   <!-- Projects Section End -->

@@ -33,7 +33,7 @@ navbarLinks.querySelectorAll('a').forEach(link => {
 langToggle.addEventListener('click', function() {
   const langFlag = document.getElementById('langFlag');
   if (this.textContent.trim().endsWith('ENG')) {
-    langFlag.src = 'assets/peru_icon.png';
+    langFlag.src = 'assets/Peru_icon.png';
     langFlag.alt = 'Peru';
     this.childNodes[1].nodeValue = 'ESP';
   } else {
@@ -303,8 +303,17 @@ window.addEventListener('DOMContentLoaded', function() {
 
     updatePaginationUI();
 
-    if (doScroll && filtersElement) {
-      filtersElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (doScroll) {
+      if (window.innerWidth > 700) {
+        // Desktop: scroll to skills section
+        const skillsSection = document.querySelector('#skills');
+        if (skillsSection) {
+          skillsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } else if (filtersElement) {
+        // Mobile: scroll to filters
+        filtersElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   }
 
