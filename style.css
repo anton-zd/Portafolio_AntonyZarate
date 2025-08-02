@@ -1200,14 +1200,16 @@ body {
 
 /* --- Unified Pagination Styles --- */
 .certificates-pagination-wrapper,
-.programs-pagination-wrapper {
+.programs-pagination-wrapper,
+.projects-pagination-wrapper {
   display: none; /* Hidden by default, enabled by JS or media queries */
   justify-content: center;
   margin-top: 1.5rem;
 }
 
 .certificates-pagination,
-.programs-pagination {
+.programs-pagination,
+.projects-pagination {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -1217,12 +1219,12 @@ body {
   box-shadow: 0 4px 12px 0 rgba(30,34,40,0.07);
 }
 
-.cert-pagination-btn, .program-pagination-btn,
-.cert-pagination-page, .program-pagination-page {
+.cert-pagination-btn, .program-pagination-btn, .project-pagination-btn,
+.cert-pagination-page, .program-pagination-page, .project-pagination-page {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
@@ -1232,29 +1234,44 @@ body {
   box-shadow: none;
 }
 
-.cert-pagination-btn, .program-pagination-btn {
+.cert-pagination-btn, .program-pagination-btn, .project-pagination-btn {
   font-size: 1.2rem;
   width: 2.2rem;
   height: 2.2rem;
 }
 
-.cert-pagination-page, .program-pagination-page {
+.cert-pagination-page, .program-pagination-page, .project-pagination-page {
   font-size: 1rem;
   width: 2.2rem;
   height: 2.2rem;
 }
 
-.cert-pagination-btn:disabled, .program-pagination-btn:disabled {
+.cert-pagination-btn:disabled, .program-pagination-btn:disabled, .project-pagination-btn:disabled {
   cursor: not-allowed;
   background-color: #f8fafc;
   color: #9ca3af;
   border-color: #e5e7eb;
 }
 
-.cert-pagination-page.active, .program-pagination-page.active {
-  background-color: #23272f;
+.cert-pagination-btn:not(:disabled), .program-pagination-btn:not(:disabled), .project-pagination-btn:not(:disabled) {
+  background-color: #1e2939;
   color: #fff;
-  border-color: #23272f;
+  border-color: #1e2939;
+}
+
+.cert-pagination-page:not(.active):hover,
+.program-pagination-page:not(.active):hover,
+.project-pagination-page:not(.active):hover {
+  border-color: #1e2939;
+  background-color: #f8fafc;
+}
+
+.cert-pagination-page.active,
+.program-pagination-page.active,
+.project-pagination-page.active {
+  background-color: #1e2939;
+  color: #fff;
+  border-color: #1e2939;
 }
 
 /* --- Certificate Cards Styles --- */
@@ -1774,18 +1791,21 @@ body {
 }
 
 /* Hide programs pagination on desktop, it's mobile only */
-.programs-pagination-wrapper {
+.programs-pagination-wrapper,
+.projects-pagination-wrapper {
     display: none;
 }
 
 @media (max-width: 700px) {
-    .programs-pagination-wrapper {
+    .programs-pagination-wrapper,
+    .projects-pagination-wrapper {
         display: flex;
     }
 }
 
 .certificates-pagination,
-.programs-pagination {
+.programs-pagination,
+.projects-pagination {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -1797,8 +1817,10 @@ body {
 
 .cert-pagination-btn,
 .program-pagination-btn,
+.project-pagination-btn,
 .cert-pagination-page,
-.program-pagination-page {
+.program-pagination-page,
+.project-pagination-page {
   border: 1px solid #e2e8f0;
   background-color: #fff;
   color: #334155;
@@ -1814,21 +1836,21 @@ body {
 }
 
 .cert-pagination-btn,
-.program-pagination-btn {
+.program-pagination-btn,
+.project-pagination-btn {
   width: 44px;
-  background-color: #1e2939;
-  color: #fff;
-  border-color: #1e2939;
 }
 
 .cert-pagination-page,
-.program-pagination-page {
+.program-pagination-page,
+.project-pagination-page {
   min-width: 44px;
   padding: 0 0.5rem;
 }
 
 .cert-pagination-btn:disabled,
-.program-pagination-btn:disabled {
+.program-pagination-btn:disabled,
+.project-pagination-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   background-color: #e2e8f0;
@@ -1836,14 +1858,24 @@ body {
   color: #94a3b8;
 }
 
+.cert-pagination-btn:not(:disabled),
+.program-pagination-btn:not(:disabled),
+.project-pagination-btn:not(:disabled) {
+  background-color: #1e2939;
+  color: #fff;
+  border-color: #1e2939;
+}
+
 .cert-pagination-page:not(.active):hover,
-.program-pagination-page:not(.active):hover {
+.program-pagination-page:not(.active):hover,
+.project-pagination-page:not(.active):hover {
   border-color: #1e2939;
   background-color: #f8fafc;
 }
 
 .cert-pagination-page.active,
-.program-pagination-page.active {
+.program-pagination-page.active,
+.project-pagination-page.active {
   background-color: #1e2939;
   color: #fff;
   border-color: #1e2939;

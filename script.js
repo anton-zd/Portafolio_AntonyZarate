@@ -252,7 +252,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
 })();
 
-
 // =================== CERTIFICATES PAGINATION (RESPONSIVE) ===================
 (function() {
   const totalCerts = document.querySelectorAll('.skills-category.skills-certs .cert-card').length;
@@ -388,6 +387,99 @@ window.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     certCards.forEach(card => card.style.display = 'none');
+    init();
+  });
+
+})();
+
+// =================== PROJECTS PAGINATION (MOBILE ONLY) ===================
+(function() {
+  const projectsContainer = document.querySelector('.projects-list');
+  if (!projectsContainer) return;
+
+  const totalProjects = projectsContainer.querySelectorAll('.project-card').length;
+  const prevBtn = document.getElementById('projectPrevBtn');
+  const nextBtn = document.getElementById('projectNextBtn');
+  const pageButtons = document.querySelectorAll('.project-pagination-page');
+  const projectCards = projectsContainer.querySelectorAll('.project-card[data-project]');
+  const projectsSection = document.querySelector('#projects');
+
+  let currentPage = 1;
+  let projectsPerPage = 3;
+  let totalPages = Math.ceil(totalProjects / projectsPerPage);
+
+  function showPage(page, doScroll = false) {
+    if (window.innerWidth > 700) {
+      // If we are on desktop, ensure all cards are visible and exit
+      projectCards.forEach(card => card.style.display = 'flex');
+      return;
+    }
+    
+    if (page < 1 || page > totalPages) return;
+    currentPage = page;
+
+    const start = (page - 1) * projectsPerPage;
+    const end = start + projectsPerPage;
+
+    projectCards.forEach((card, index) => {
+      const isVisible = index >= start && index < end;
+      card.style.display = isVisible ? 'flex' : 'none';
+    });
+
+    updatePaginationUI();
+
+    if (doScroll && projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  function updatePaginationUI() {
+    if (window.innerWidth > 700) {
+      // Pagination is hidden by CSS on desktop, no need for JS to do anything.
+      return;
+    }
+
+    if (prevBtn) prevBtn.disabled = currentPage === 1;
+    if (nextBtn) nextBtn.disabled = currentPage === totalPages;
+
+    pageButtons.forEach(btn => {
+      const pageNum = parseInt(btn.dataset.page);
+      btn.classList.toggle('active', pageNum === currentPage);
+    });
+  }
+
+  function setupEventListeners() {
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => showPage(currentPage - 1, true));
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => showPage(currentPage + 1, true));
+    }
+    pageButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const page = parseInt(btn.dataset.page);
+        showPage(page, true);
+      });
+    });
+  }
+
+  function init() {
+    if (window.innerWidth <= 700) {
+      showPage(1, false);
+    } else {
+      projectCards.forEach(card => card.style.display = 'flex');
+    }
+    updatePaginationUI();
+  }
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(init, 250);
+  });
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    setupEventListeners();
     init();
   });
 
