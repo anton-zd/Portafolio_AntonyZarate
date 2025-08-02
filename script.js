@@ -192,16 +192,8 @@ window.addEventListener('DOMContentLoaded', function() {
 
   function updatePaginationUI() {
     if (window.innerWidth > 700) {
-      const paginationWrapper = programsContainer.querySelector('.programs-pagination-wrapper');
-      if (paginationWrapper) {
-        paginationWrapper.style.display = 'none';
-      }
+      // Pagination is hidden by CSS on desktop, no need for JS to do anything.
       return;
-    }
-    
-    const paginationWrapper = programsContainer.querySelector('.programs-pagination-wrapper');
-    if (paginationWrapper) {
-        paginationWrapper.style.display = 'flex';
     }
 
     if (prevBtn) prevBtn.disabled = currentPage === 1;

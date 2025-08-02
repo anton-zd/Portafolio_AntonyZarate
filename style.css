@@ -1251,12 +1251,6 @@ body {
   border-color: #e5e7eb;
 }
 
-.cert-pagination-btn:not(:disabled):hover, .program-pagination-btn:not(:disabled):hover,
-.cert-pagination-page:not(.active):hover, .program-pagination-page:not(.active):hover {
-  background-color: #f1f5f9;
-  border-color: #d1d5db;
-}
-
 .cert-pagination-page.active, .program-pagination-page.active {
   background-color: #23272f;
   color: #fff;
@@ -1770,29 +1764,28 @@ body {
   }
 }
 
-/* --- Certificates Pagination Styles --- */
-.certificates-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  width: 100%;
-}
-
-/* Hide certs by default only on desktop for JS pagination */
-@media (min-width: 701px) {
-  .cert-card[data-cert] {
-    display: none;
-  }
-}
-
-.certificates-pagination-wrapper {
+/* --- Unified Pagination Styles --- */
+.certificates-pagination-wrapper,
+.programs-pagination-wrapper {
   display: flex;
   justify-content: center;
   width: 100%;
   margin-top: 2.5rem;
 }
 
-.certificates-pagination {
+/* Hide programs pagination on desktop, it's mobile only */
+.programs-pagination-wrapper {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .programs-pagination-wrapper {
+        display: flex;
+    }
+}
+
+.certificates-pagination,
+.programs-pagination {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -1803,7 +1796,9 @@ body {
 }
 
 .cert-pagination-btn,
-.cert-pagination-page {
+.program-pagination-btn,
+.cert-pagination-page,
+.program-pagination-page {
   border: 1px solid #e2e8f0;
   background-color: #fff;
   color: #334155;
@@ -1815,23 +1810,25 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 44px;
 }
 
-.cert-pagination-btn {
+.cert-pagination-btn,
+.program-pagination-btn {
   width: 44px;
-  height: 44px;
   background-color: #1e2939;
   color: #fff;
   border-color: #1e2939;
 }
 
-.cert-pagination-page {
+.cert-pagination-page,
+.program-pagination-page {
   min-width: 44px;
-  height: 44px;
   padding: 0 0.5rem;
 }
 
-.cert-pagination-btn:disabled {
+.cert-pagination-btn:disabled,
+.program-pagination-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   background-color: #e2e8f0;
@@ -1839,31 +1836,27 @@ body {
   color: #94a3b8;
 }
 
-.cert-pagination-page:hover {
+.cert-pagination-page:not(.active):hover,
+.program-pagination-page:not(.active):hover {
   border-color: #1e2939;
   background-color: #f8fafc;
 }
 
-.cert-pagination-page.active {
+.cert-pagination-page.active,
+.program-pagination-page.active {
   background-color: #1e2939;
   color: #fff;
   border-color: #1e2939;
 }
 
-@media (max-width: 700px) {
-  .certificates-grid {
-    grid-template-columns: 1fr;
-    justify-items: center;
-  }
-  .certificates-pagination-wrapper {
-    display: flex; /* Show on mobile */
-  }
-  .certificates-pagination {
-    display: flex; /* Show on mobile */
-  }
+/* --- Grids for Skills Section --- */
+.certificates-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
 }
 
-/* --- Programs Pagination Styles --- */
 .programs-grid {
   display: flex;
   flex-wrap: wrap;
@@ -1873,18 +1866,16 @@ body {
   width: 100%;
 }
 
-.programs-pagination-wrapper {
-  display: none;
-  margin-top: 2.5rem;
-}
-
 @media (max-width: 700px) {
+  .certificates-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
   .skills-category.skills-programs {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-
   .programs-grid {
     display: flex;
     flex-wrap: wrap;
@@ -1893,70 +1884,13 @@ body {
     width: 100%;
     padding: 0;
   }
+}
 
-  .programs-pagination-wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+/* --- JS Visibility Control --- */
+@media (min-width: 701px) {
+  .cert-card[data-cert] {
+    display: none;
   }
-}
-
-.programs-pagination {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: #fff;
-  border-radius: 12px;
-  padding: 0.5rem;
-  box-shadow: 0 2px 12px 0 rgba(30,34,40,0.07);
-}
-
-.program-pagination-btn,
-.program-pagination-page {
-  border: 1.5px solid #e2e8f0;
-  border-radius: 8px;
-  background: transparent;
-  color: #1e2939;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.program-pagination-btn {
-  width: 2.5rem;
-  height: 2.5rem;
-}
-
-.program-pagination-page {
-  width: 2.5rem;
-  height: 2.5rem;
-}
-
-.program-pagination-btn:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-  background: #f8fafc;
-}
-
-.program-pagination-btn:not(:disabled) {
-  background-color: #1e2939;
-  color: #fff;
-  border-color: #1e2939;
-}
-
-.program-pagination-page:hover {
-  border-color: #1e2939;
-  background-color: #f8fafc;
-}
-
-.program-pagination-page.active {
-  background-color: #1e2939;
-  color: #fff;
-  border-color: #1e2939;
 }
 
 /* --- Certificate Cards Styles --- */
