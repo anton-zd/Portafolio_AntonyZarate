@@ -16,11 +16,29 @@ navbarToggle.addEventListener('click', () => {
     : "<i class='bx bx-menu'></i>";
 });
 
-// Active link switching
+// Active link switching & Smooth Scroll
 navbarLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+
+    // Handle smooth scroll for internal links
+    if (href && href.startsWith('#')) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    // Handle active link state
     navbarLinks.querySelectorAll('a').forEach(l => l.classList.remove('active'));
     this.classList.add('active');
+
+    // Close mobile menu on click
     if (window.innerWidth <= 700) {
       navbarLinks.classList.remove('active');
       navbarToggle.classList.remove('open');
@@ -192,7 +210,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
   function updatePaginationUI() {
     if (window.innerWidth > 700) {
-      // Pagination is hidden by CSS on desktop, no need for JS to do anything.
       return;
     }
 
@@ -296,13 +313,11 @@ window.addEventListener('DOMContentLoaded', function() {
 
     if (doScroll) {
       if (window.innerWidth > 700) {
-        // Desktop: scroll to skills section
         const skillsSection = document.querySelector('#skills');
         if (skillsSection) {
           skillsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       } else if (filtersElement) {
-        // Mobile: scroll to filters
         filtersElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
@@ -410,7 +425,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
   function showPage(page, doScroll = false) {
     if (window.innerWidth > 700) {
-      // If we are on desktop, ensure all cards are visible and exit
       projectCards.forEach(card => card.style.display = 'flex');
       return;
     }
@@ -481,6 +495,43 @@ window.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     init();
+  });
+
+})();
+
+// =================== SCROLLSPY FOR ACTIVE NAV LINK ===================
+(function() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.navbar__links a');
+  const navbar = document.querySelector('.navbar');
+
+  if (sections.length === 0 || navLinks.length === 0 || !navbar) {
+    return;
+  }
+
+  const observerOptions = {
+    root: null, 
+    rootMargin: `-${navbar.offsetHeight}px 0px 0px 0px`, 
+    threshold: 0.3 
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        const activeLink = document.querySelector(`.navbar__links a[href="#${id}"]`);
+
+        if (activeLink) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          activeLink.classList.add('active');
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe each section
+  sections.forEach(section => {
+    observer.observe(section);
   });
 
 })();

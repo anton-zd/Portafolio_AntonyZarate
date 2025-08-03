@@ -47,7 +47,7 @@ body {
   background: #f8fafc;
   min-height: 100vh;
   width: 100vw;
-  overflow-y: auto; /* Allow vertical scrolling */
+  overflow-y: auto; 
 }
 .navbar {
   display: flex;
