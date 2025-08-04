@@ -1,0 +1,244 @@
+/* Apply a transition to all elements for a smoother theme change */
+body.dark-mode,
+body.dark-mode *:not(script) {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* --- General Body & Background --- */
+body.dark-mode {
+  background-color: rgb(30, 41, 57);
+  color: #e5e7eb; 
+}
+
+/* --- Navbar --- */
+body.dark-mode .navbar {
+  background-color: #111827; 
+  box-shadow: 0 4px 12px 0 rgba(0,0,0,0.15), 0 1px 0 0 #374151;
+}
+
+body.dark-mode .navbar__logo span,
+body.dark-mode .navbar__logo i,
+body.dark-mode .navbar__toggle {
+  color: #f9fafb; 
+}
+
+body.dark-mode .navbar__links li a {
+  color: #d1d5db;
+}
+
+body.dark-mode .navbar__links li a.active,
+body.dark-mode .navbar__links li a:focus {
+  background-color: #f9fafb;
+  color: #111827; 
+  box-shadow: 0 4px 12px 0 rgba(0,0,0,0.2);
+}
+
+body.dark-mode .navbar__links li a:hover:not(.active) {
+  background-color: #374151; 
+  color: #f9fafb;
+}
+
+body.dark-mode .navbar__menu-title {
+  color: #f9fafb;
+  border-bottom-color: #374151;
+}
+
+/* --- Headings and Subtitles --- */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode .home-typing,
+body.dark-mode .stats-title {
+  color: #f9fafb;
+}
+
+body.dark-mode .about-subtitle,
+body.dark-mode .skills-subtitle,
+body.dark-mode .projects-subtitle,
+body.dark-mode .contact-subtitle,
+body.dark-mode .home-desc,
+body.dark-mode .personal-value,
+body.dark-mode .home-social span {
+  color: #d1d5db;
+}
+
+/* --- Sections --- */
+body.dark-mode .home-section,
+body.dark-mode .about-section,
+body.dark-mode .skills-section,
+body.dark-mode .projects-section,
+body.dark-mode .contact-section {
+  background-color: rgb(30, 41, 57);
+}
+
+/* --- Cards & Interactive Elements --- */
+body.dark-mode .about-card,
+body.dark-mode .about-personal,
+body.dark-mode .skill-card,
+body.dark-mode .project-card,
+body.dark-mode .contact-card,
+body.dark-mode .whatsapp-qr-card {
+  background-color: #1f2937; 
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.15);
+  border: 1px solid #374151;
+}
+
+body.dark-mode .whatsapp-qr-img {
+  background-color: #ffffff;
+
+}
+
+body.dark-mode .about-icon,
+body.dark-mode .personal-icon,
+body.dark-mode .skill-icon {
+  background-color: #374151;
+  color: #f9fafb;
+}
+
+body.dark-mode .personal-item {
+  color: #f9fafb;
+}
+
+body.dark-mode .personal-item span,
+body.dark-mode .personal-item b,
+body.dark-mode .personal-value {
+  color: #f9fafb !important;
+}
+
+body.dark-mode .about-card p,
+body.dark-mode .skill-info span,
+body.dark-mode .skill-info small,
+body.dark-mode .cert-info span,
+body.dark-mode .project-title,
+body.dark-mode .project-level,
+body.dark-mode .contact-card-title,
+body.dark-mode .contact-card-desc,
+body.dark-mode .whatsapp-qr-title,
+body.dark-mode .whatsapp-qr-desc {
+  color: #f9fafb;
+}
+
+body.dark-mode .project-description {
+    font-size: 0.9rem;
+    color: #f9fafb;
+}
+
+/* --- Buttons & Tags --- */
+body.dark-mode .btn-primary {
+  background-color: #f9fafb;
+  color: #111827;
+}
+body.dark-mode .btn-primary:hover {
+  background-color: #e5e7eb;
+}
+
+body.dark-mode .btn-secondary {
+  background-color: transparent;
+  color: #f9fafb;
+  border-color: #f9fafb;
+}
+body.dark-mode .btn-secondary:hover {
+  background-color: #374151;
+}
+
+body.dark-mode .skills-filter {
+  background-color: #374151;
+  color: #f9fafb;
+  box-shadow: none;
+  border: 1px solid #4b5563;
+}
+
+body.dark-mode .skills-filter.active {
+  background-color: #f9fafb;
+  color: #111827;
+  border-color: #f9fafb;
+}
+
+body.dark-mode .project-tag {
+  background-color: #374151;
+  color: #d1d5db;
+}
+
+body.dark-mode .project-btn {
+  background-color: #374151;
+  color: #f9fafb;
+  border-color: #4b5563;
+}
+body.dark-mode .project-btn:hover {
+  background-color: #4b5563;
+  border-color: #6b7280;
+}
+
+/* --- Pagination --- */
+body.dark-mode .certificates-pagination,
+body.dark-mode .programs-pagination,
+body.dark-mode .projects-pagination {
+  background-color: #1f2937;
+  box-shadow: 0 4px 12px 0 rgba(0,0,0,0.2);
+}
+
+body.dark-mode .cert-pagination-btn, body.dark-mode .program-pagination-btn, body.dark-mode .project-pagination-btn,
+body.dark-mode .cert-pagination-page, body.dark-mode .program-pagination-page, body.dark-mode .project-pagination-page {
+  background-color: #374151;
+  color: #f9fafb;
+  border-color: #4b5563;
+}
+
+body.dark-mode .cert-pagination-page.active,
+body.dark-mode .program-pagination-page.active,
+body.dark-mode .project-pagination-page.active {
+  background-color: #f9fafb;
+  color: #111827;
+  border-color: #f9fafb;
+}
+
+/* Hover effects for pagination buttons in dark mode */
+body.dark-mode .cert-pagination-btn:not(:disabled):hover,
+body.dark-mode .program-pagination-btn:not(:disabled):hover,
+body.dark-mode .project-pagination-btn:not(:disabled):hover {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #f9fafb;
+  cursor: pointer;
+}
+
+body.dark-mode .cert-pagination-page:not(.active):hover,
+body.dark-mode .program-pagination-page:not(.active):hover,
+body.dark-mode .project-pagination-page:not(.active):hover {
+  background-color: rgb(30, 41, 57);
+  border-color: #f9fafb;
+  color: #f9fafb;
+}
+
+body.dark-mode .cert-pagination-btn:disabled, 
+body.dark-mode .program-pagination-btn:disabled, 
+body.dark-mode .project-pagination-btn:disabled {
+  background-color: #111827;
+  color: #4b5563;
+  border-color: #374151;
+}
+
+/* --- Floating Icons --- */
+body.dark-mode .floating-icon {
+  background-color: #e5e7eb;
+}
+body.dark-mode .floating-icon.excel-icon img {
+  content: url('assets/Floating_Animation_icons/excel_night.mode.png');
+}
+body.dark-mode .floating-icon.powerbi-icon img {
+  content: url('assets/Floating_Animation_icons/powerbi_night.mode.png');
+}
+body.dark-mode .floating-icon.python-icon img {
+  content: url('assets/Floating_Animation_icons/python_night.mode.png');
+}
+body.dark-mode .floating-icon.sql-icon img {
+  content: url('assets/Floating_Animation_icons/sql_night.mode.png');
+}
+
+/* --- Mobile Menu --- */
+body.dark-mode .navbar__links {
+    background-color: #111827;
+}
+
+

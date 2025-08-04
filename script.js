@@ -16,13 +16,13 @@ navbarToggle.addEventListener('click', () => {
     : "<i class='bx bx-menu'></i>";
 });
 
-// Active link switching & Smooth Scroll
-navbarLinks.querySelectorAll('a').forEach(link => {
+// Smooth Scroll for all internal links & Active Link Switching for Navbar
+document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', function(e) {
     const href = this.getAttribute('href');
 
     // Handle smooth scroll for internal links
-    if (href && href.startsWith('#')) {
+    if (href && href.length > 1) {
       e.preventDefault();
       const targetId = href.substring(1);
       const targetElement = document.getElementById(targetId);
@@ -34,15 +34,17 @@ navbarLinks.querySelectorAll('a').forEach(link => {
       }
     }
 
-    // Handle active link state
-    navbarLinks.querySelectorAll('a').forEach(l => l.classList.remove('active'));
-    this.classList.add('active');
+    // If the link is inside the navbar, handle the active state
+    if (this.closest('.navbar__links')) {
+      navbarLinks.querySelectorAll('a').forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
 
-    // Close mobile menu on click
-    if (window.innerWidth <= 700) {
-      navbarLinks.classList.remove('active');
-      navbarToggle.classList.remove('open');
-      navbarToggle.innerHTML = "<i class='bx bx-menu'></i>";
+      // Close mobile menu on click
+      if (window.innerWidth <= 700) {
+        navbarLinks.classList.remove('active');
+        navbarToggle.classList.remove('open');
+        navbarToggle.innerHTML = "<i class='bx bx-menu'></i>";
+      }
     }
   });
 });
@@ -63,7 +65,9 @@ langToggle.addEventListener('click', function() {
 
 // Dark mode toggle: change label and icon only
 modeToggle.addEventListener('click', function() {
-  if (this.textContent.includes('Oscuro')) {
+  document.body.classList.toggle('dark-mode');
+  
+  if (document.body.classList.contains('dark-mode')) {
     this.innerHTML = "<i class='bx bx-sun'></i> Modo Claro";
   } else {
     this.innerHTML = "<i class='bx bx-moon'></i> Modo Oscuro";

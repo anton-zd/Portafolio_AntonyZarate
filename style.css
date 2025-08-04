@@ -889,19 +889,12 @@ body {
     flex-direction: column;
     gap: 0.7rem;
   }
-  .personal-item {
-    background: #f1f5f9;
-    box-shadow: 0 1px 4px 0 rgba(30,34,40,0.05);
-    border-radius: 8px;
-    padding: 0.7rem 1.1rem;
-    min-width: 220px;
-  }
   .personal-icon {
     border-radius: 6px;
-    width: 2rem;
-    height: 2rem;
-    min-width: 2rem;
-    min-height: 2rem;
+    width: 3rem;
+    height: 3rem;
+    min-width: 3rem;
+    min-height: 3rem;
     font-size: 1.2rem;
     margin-right: 0.7rem;
   }
@@ -925,11 +918,6 @@ body {
   }
   .about-card, .about_personal {
     padding: 0.8rem 0.7rem;
-  }
-  .personal-item {
-    min-width: 0;
-    font-size: 0.97rem;
-    padding: 0.5rem 0.7rem;
   }
   .about-icon {
     width: 32px !important;
@@ -1967,4 +1955,9 @@ body {
   color: #23272f;
   text-align: center;
   margin-bottom: 0.3rem;
+}
+
+/* Dark primary background utility class */
+.bg-dark-primary {
+  background-color: rgb(30, 41, 57) ;
 }
