@@ -36,8 +36,8 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
     // If the link is inside the navbar, handle the active state
     if (this.closest('.navbar__links')) {
-      navbarLinks.querySelectorAll('a').forEach(l => l.classList.remove('active'));
-      this.classList.add('active');
+      // navbarLinks.querySelectorAll('a').forEach(l => l.classList.remove('active'));
+      // this.classList.add('active');
 
       // Close mobile menu on click
       if (window.innerWidth <= 700) {
@@ -499,43 +499,6 @@ window.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     init();
-  });
-
-})();
-
-// =================== SCROLLSPY FOR ACTIVE NAV LINK ===================
-(function() {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.navbar__links a');
-  const navbar = document.querySelector('.navbar');
-
-  if (sections.length === 0 || navLinks.length === 0 || !navbar) {
-    return;
-  }
-
-  const observerOptions = {
-    root: null, 
-    rootMargin: `-${navbar.offsetHeight}px 0px 0px 0px`, 
-    threshold: 0.3 
-  };
-
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        const activeLink = document.querySelector(`.navbar__links a[href="#${id}"]`);
-
-        if (activeLink) {
-          navLinks.forEach(link => link.classList.remove('active'));
-          activeLink.classList.add('active');
-        }
-      }
-    });
-  }, observerOptions);
-
-  // Observe each section
-  sections.forEach(section => {
-    observer.observe(section);
   });
 
 })();

@@ -26,14 +26,7 @@ body.dark-mode .navbar__links li a {
   color: #d1d5db;
 }
 
-body.dark-mode .navbar__links li a.active,
-body.dark-mode .navbar__links li a:focus {
-  background-color: #f9fafb;
-  color: #111827; 
-  box-shadow: 0 4px 12px 0 rgba(0,0,0,0.2);
-}
-
-body.dark-mode .navbar__links li a:hover:not(.active) {
+body.dark-mode .navbar__links li a:hover {
   background-color: #374151; 
   color: #f9fafb;
 }

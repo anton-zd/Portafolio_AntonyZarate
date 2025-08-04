@@ -100,19 +100,11 @@ body {
   transition: background 0.18s, color 0.18s, box-shadow 0.18s;
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
 }
-.navbar__links li a.active, .navbar__links li a:focus {
-  background: #23272f;
-  color: #fff;
-  box-shadow: 0 4px 24px 0 rgba(30,34,40,0.10);
-}
 .navbar__links li a:hover {
   background: #f1f5f9;
   color: #23272f;
 }
-.navbar__links li a.active:hover, .navbar__links li a.active:focus {
-  background: #23272f;
-  color: #fff;
-}
+
 .lang-toggle {
   margin-left: 1.5rem;
   background: #23272f;
