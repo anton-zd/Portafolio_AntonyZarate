@@ -36,6 +36,9 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
     // If the link is inside the navbar, handle the active state
     if (this.closest('.navbar__links')) {
+      // navbarLinks.querySelectorAll('a').forEach(l => l.classList.remove('active'));
+      // this.classList.add('active');
+
       // Close mobile menu on click
       if (window.innerWidth <= 700) {
         navbarLinks.classList.remove('active');
@@ -100,10 +103,10 @@ document.addEventListener('DOMContentLoaded', function() {
   type();
 
   // Update CV link with timestamp to prevent caching
-  const cvLink = document.querySelector('a[href*="CV_Antony_Zarate.pdf"]');
+  const cvLink = document.querySelector('a[href*="Antony_Zarate_CV.pdf"]');
   if (cvLink) {
     const timestamp = new Date().getTime();
-    cvLink.href = `assets/CV_Antony_Zarate.pdf?v=${timestamp}`;
+    cvLink.href = `assets/Antony_Zarate_CV.pdf?v=${timestamp}`;
   }
 });
 
