@@ -101,13 +101,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   type();
-
-  // Update CV link with timestamp to prevent caching
-  const cvLink = document.querySelector('a[href*="Antony_Zarate_CV.pdf"]');
-  if (cvLink) {
-    const timestamp = new Date().getTime();
-    cvLink.href = `assets/Antony_Zarate_CV.pdf?v=${timestamp}`;
-  }
 });
 
 // --- Skills Section Filter Logic ---
